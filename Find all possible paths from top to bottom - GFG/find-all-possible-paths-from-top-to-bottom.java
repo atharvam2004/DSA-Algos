@@ -100,8 +100,9 @@ class Solution {
         return  countPaths(0,0,m,n,grid,ans);
     }
     public static ArrayList<ArrayList <Integer>> countPaths(int row, int column,int m,int n, int[][] grid, ArrayList<Integer> ans) {
+                     ArrayList<ArrayList <Integer>>total=new ArrayList<>();
+
          if(row==m-1||column==n-1){
-            ArrayList<ArrayList <Integer>>total=new ArrayList<>();
              if(row==m-1){
                  while(column!=n-1){
                      column++;
@@ -119,7 +120,6 @@ class Solution {
              return total;
          }
 
-        ArrayList<ArrayList <Integer>>total=new ArrayList<>();
           ArrayList<Integer> ans2=new ArrayList<>();
           ans2.addAll(ans);
           ans2.add(grid[row+1][column]);
