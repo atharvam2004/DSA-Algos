@@ -115,9 +115,9 @@ class Solution {
         if(root==null){
             return ans;
         }
-        KthSmallestElement(root.left,K);
+        int left=KthSmallestElement(root.left,K);
         K2++;
-        if(K2==K&&root!=null){
+        if(K2==K){
             K2++;
             ans=root.data;
             return ans;
