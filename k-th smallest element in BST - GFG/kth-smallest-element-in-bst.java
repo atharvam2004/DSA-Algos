@@ -108,19 +108,13 @@ class Solution {
     public int K2=0;
 
     public int KthSmallestElement(Node root, int K) {
-        // Write your code here
        return helper (root,K);
     }
      public int helper(Node root, int K) {
-        if(K2==K&&root!=null){
-            K2++;
-            ans=root.data;
-            return ans;
-        }
+        
         if(root==null){
             return ans;
         }
-        //System.out.println(K2+" "+root.data);
         KthSmallestElement(root.left,K);
         K2++;
         if(K2==K&&root!=null){
