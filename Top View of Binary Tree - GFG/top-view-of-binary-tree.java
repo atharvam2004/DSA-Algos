@@ -136,18 +136,17 @@ class Solution
    
     static ArrayList<Integer> topView(Node root)
     {
-        HashMap <Integer,Integer>map=new HashMap<>();
+        Map<Integer, Integer> map = new TreeMap<>();
         helper(root,map,0);
-       ArrayList<Integer> keyList = new ArrayList<>(map.keySet());
+        ArrayList<Integer> keyList = new ArrayList<>(map.keySet());
         Collections.sort(keyList);
-        ArrayList<Integer> valueList = new ArrayList<>();
-        for (Integer key : keyList) {
-            valueList.add(map.get(key));
+        ArrayList<Integer> ans = new ArrayList<>();
+        for (Map.Entry<Integer,Integer> entry : map.entrySet()) {
+            ans.add(entry.getValue()); 
         }
-
-        return valueList;
+        return ans; 
     }
-    static void helper(Node root,HashMap<Integer,Integer> map,int ver)
+    static void helper(Node root,Map<Integer,Integer> map,int ver)
     {
         Queue <tuple>q=new LinkedList<>();
         q.offer(new tuple(0,root));
