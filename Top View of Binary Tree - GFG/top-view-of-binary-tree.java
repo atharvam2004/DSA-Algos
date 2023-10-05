@@ -139,7 +139,6 @@ class Solution
         Map<Integer, Integer> map = new TreeMap<>();
         helper(root,map,0);
         ArrayList<Integer> keyList = new ArrayList<>(map.keySet());
-        Collections.sort(keyList);
         ArrayList<Integer> ans = new ArrayList<>();
         for (Map.Entry<Integer,Integer> entry : map.entrySet()) {
             ans.add(entry.getValue()); 
