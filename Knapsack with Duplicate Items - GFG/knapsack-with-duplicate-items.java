@@ -49,7 +49,7 @@ class Solution{
                 int nottake=dp[j];
                 curr[j]=Math.max(take,nottake);
             }
-            dp=curr.clone();
+            dp=curr;
             curr=new int[W+1];        
             
         }
