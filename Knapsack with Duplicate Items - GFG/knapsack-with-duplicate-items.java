@@ -35,22 +35,42 @@ class GFG{
 class Solution{
     static int knapSack(int N, int W, int val[], int wt[])
     {
-        int dp[][]=new int[N][W+1];
-        for(int i=0;i<N;i++){
-            dp[i][0]=0;
-        }
+        int dp[]=new int[W+1];
         for(int i=0;i<W+1;i++){
-            dp[0][i]=(i/wt[0])*val[0];
+            dp[i]=(i/wt[0])*val[0];
         }
+        dp[0]=0;
+        int curr[]=new int[W+1];
         for(int i=1;i<N;i++){
             for(int j=1;j<W+1;j++){
                 int take=0;
                 if(j-wt[i]>=0)
-                take=val[i]+dp[i][j-wt[i]];
-                int nottake=dp[i-1][j];
-                dp[i][j]=Math.max(take,nottake);
+                take=val[i]+curr[j-wt[i]];
+                int nottake=dp[j];
+                curr[j]=Math.max(take,nottake);
             }
+            dp=curr.clone();
+            curr=new int[W+1];        
+            
         }
-        return dp[N-1][W];
+        return dp[W];
     }
+
+        // int dp[][]=new int[N][W+1];
+        // for(int i=0;i<N;i++){
+        //     dp[i][0]=0;
+        // }
+        // for(int i=0;i<W+1;i++){
+        //     dp[0][i]=(i/wt[0])*val[0];
+        // }
+        // for(int i=1;i<N;i++){
+        //     for(int j=1;j<W+1;j++){
+        //         int take=0;
+        //         if(j-wt[i]>=0)
+        //         take=val[i]+dp[i][j-wt[i]];
+        //         int nottake=dp[i-1][j];
+        //         dp[i][j]=Math.max(take,nottake);
+        //     }
+        // }
+        // return dp[N-1][W];
 }
