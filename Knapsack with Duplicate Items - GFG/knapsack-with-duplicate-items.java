@@ -37,23 +37,20 @@ class Solution{
     {
         int dp[][]=new int[N][W+1];
         for(int i=0;i<N;i++){
-            for(int j=0;j<W+1;j++){
-                dp[i][j]=-1;
-            } 
+            dp[i][0]=0;
         }
-        return helper(N-1,W,val,wt,dp);
-    }
-    static int helper(int N, int W, int val[], int wt[],int [][] dp)
-    {
-        if(dp[N][W]!=-1)return dp[N][W];
-        if(W==0)return 0;
-        if(N==0){
-            return (W/wt[0])*val[0];
+        for(int i=0;i<W+1;i++){
+            dp[0][i]=(i/wt[0])*val[0];
         }
-        int take=0;
-        if(W-wt[N]>=0)
-        take=val[N]+helper(N,W-wt[N],val,wt,dp);
-        int nottake=helper(N-1,W,val,wt,dp);
-        return dp[N][W]=Math.max(take,nottake);
+        for(int i=1;i<N;i++){
+            for(int j=1;j<W+1;j++){
+                int take=0;
+                if(j-wt[i]>=0)
+                take=val[i]+dp[i][j-wt[i]];
+                int nottake=dp[i-1][j];
+                dp[i][j]=Math.max(take,nottake);
+            }
+        }
+        return dp[N-1][W];
     }
 }
